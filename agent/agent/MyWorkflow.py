@@ -23,8 +23,6 @@ from llama_index.protocols.ag_ui.utils import (
     validate_tool,
 )
 
-from agent.ace.playbook_store import PlaybookStore
-
 DEFAULT_STATE_PROMPT = """<state>
 {state}
 </state>
@@ -54,7 +52,7 @@ class ToolCallResultEvent(Event):
     tool_output: ToolOutput
 
 
-class AGUIChatWorkflow(Workflow):
+class MyWorkflow(Workflow):
     def __init__(
         self,
         llm: Optional[FunctionCallingLLM] = None,
@@ -114,9 +112,6 @@ class AGUIChatWorkflow(Workflow):
             )
         )
 
-    # 拼装Generator
-    def _complete_gen_prompt(self,playbook_source:PlaybookStore):
-        pass
     @step
     async def chat(
         self, ctx: Context, ev: InputEvent | LoopEvent
