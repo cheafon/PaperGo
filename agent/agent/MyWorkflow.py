@@ -1,4 +1,5 @@
 import json
+import logging
 import uuid
 from typing import Any, Callable, Dict, List, Optional, Union
 
@@ -21,6 +22,11 @@ from llama_index.protocols.ag_ui.utils import (
     ag_ui_message_to_llama_index_message,
     timestamp,
     validate_tool,
+)
+
+logging.basicConfig(
+    level=logging.DEBUG,
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
 )
 
 DEFAULT_STATE_PROMPT = """<state>
@@ -84,7 +90,8 @@ class MyWorkflow(Workflow):
             tool.metadata.name: tool for tool in validated_backend_tools
         }
         self.initial_state = initial_state or {}
-        self.system_prompt = system_prompt
+        self.system_prompt =system_prompt
+
 
     def _snapshot_messages(self, ctx: Context, chat_history: List[ChatMessage]) -> None:
         # inject tool calls into the assistant message
@@ -112,6 +119,8 @@ class MyWorkflow(Workflow):
             )
         )
 
+    def _init_generator_prompt(self):
+        self.system_prompt.format()
     @step
     async def chat(
         self, ctx: Context, ev: InputEvent | LoopEvent
@@ -160,6 +169,7 @@ class MyWorkflow(Workflow):
         tools = list(self.frontend_tools.values())
         tools.extend(list(self.backend_tools.values()))
 
+        logging.info(f"""\n\n===============GEN===============\n{self.system_prompt}\n================================""")
         resp_gen = await self.llm.astream_chat_with_tools(
             tools=tools,
             chat_history=chat_history,
