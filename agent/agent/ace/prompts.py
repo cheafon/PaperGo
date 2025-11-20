@@ -1,8 +1,8 @@
 """Prompt templates adapted from the ACE paper for reuse."""
 
 GENERATOR_PROMPT = """\
-You are an expert assistant that must solve the task using the provided playbook of strategies.
-Apply relevant bullets, avoid known mistakes, and show step-by-step reasoning.
+You are an expert assistant that must solve the task by first creating a detailed action plan, then executing it step-by-step.
+Apply relevant strategies from the playbook, avoid known mistakes, and show clear reasoning.
 
 Playbook:
 {playbook}
@@ -16,8 +16,9 @@ Question:
 Additional context:
 {context}
 
-Respond with a compact JSON object directly.Do not respond the markdown style like ```json```:
+Respond with a compact JSON object directly. Do not respond the markdown style like ```json```:
 {{
+  "action_plan": ["<step1>", "<step2>", "<step3>", "..."],
   "reasoning": "<step-by-step chain of thought>",
   "bullet_ids": ["<id1>", "<id2>", "..."],
   "final_answer": "<concise final answer>"
