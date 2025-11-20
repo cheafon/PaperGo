@@ -18,6 +18,8 @@ dependencies = [
     "fastapi>=0.100.0",
     "python-dotenv>=1.0.0",
     "llama-index-llms-deepseek>=0.2.2",
+    "qdrant-client>=1.16.0",
+    "llama-index-vector-stores-qdrant>=0.8.7",
 ]
 authors = [
     { name = "Logan Markewich", email = "logan@runllama.ai" },

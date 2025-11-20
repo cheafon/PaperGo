@@ -2,7 +2,7 @@
 from abc import ABC, abstractmethod
 from typing import Optional, List
 
-from agent.ace.playbook import Playbook
+from agent.agent.ace.playbook import Playbook
 
 
 # TODO 在这里实现一个抽象类，他的实现
