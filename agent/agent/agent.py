@@ -1,6 +1,6 @@
 import os
 from pathlib import Path
-from typing import Optional, List, Dict, Any, Callable
+from typing import Optional, List, Dict, Any, Callable, Annotated
 
 from dotenv import load_dotenv
 from llama_index.core.llms.function_calling import FunctionCallingLLM
@@ -22,6 +22,10 @@ def add(a:int,b:int)->int:
     """ 两数相加 """
     return a+b
 
+
+async def make_plans(
+) -> str:
+    return f"计划完成"
 
 def get_my_factory(
         llm: Optional[FunctionCallingLLM] = None,
@@ -47,6 +51,7 @@ agentic_generative_ui_router=get_ag_ui_workflow_router(
     workflow_factory=get_my_factory(
         llm=llm,
         backend_tools=[add],
+        frontend_tools=[make_plans],
         system_prompt=prompts.GENERATOR_PROMPT
     ),
 

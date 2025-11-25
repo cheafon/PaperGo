@@ -92,7 +92,6 @@ class MyWorkflow(Workflow):
         self.initial_state = initial_state or {}
         self.system_prompt =system_prompt
 
-
     def _snapshot_messages(self, ctx: Context, chat_history: List[ChatMessage]) -> None:
         # inject tool calls into the assistant message
         for msg in chat_history:
@@ -119,8 +118,7 @@ class MyWorkflow(Workflow):
             )
         )
 
-    def _init_generator_prompt(self):
-        self.system_prompt.format()
+
     @step
     async def chat(
         self, ctx: Context, ev: InputEvent | LoopEvent
