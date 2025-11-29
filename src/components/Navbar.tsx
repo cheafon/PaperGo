@@ -32,9 +32,9 @@ export default function Navbar() {
               Visualization
             </Link>
               <Link
-                  href="/diagram"
+                  href="/assistant"
                   className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
-                      pathname === "/diagram"
+                      pathname === "/assistant"
                           ? "bg-blue-500 text-white"
                           : "text-gray-700 hover:bg-gray-100"
                   }`}
