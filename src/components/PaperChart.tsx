@@ -14,7 +14,7 @@ import {
     Pie,
     Cell,
 } from "recharts";
-import {fetch_paper_detail} from "@/api/paper";
+import {fetch_paper_detail} from "@/api/requests";
 
 export interface Author {
     authorId?: string;
